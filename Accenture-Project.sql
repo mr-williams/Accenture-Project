@@ -19,4 +19,4 @@ DELETE FROM Reaction WHERE Type=' ' OR Type IS NULL;
 /*Adding a new column "Score" which would show the score of each reaction*/
 
 ALTER TABLE dbo.Reactions
-ADD Score INT NULL ;
+ADD Score INT NULL, Section VARCHAR(20) NULL ;
