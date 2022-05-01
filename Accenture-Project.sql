@@ -16,7 +16,7 @@ WHERE Type is NULL
 DELETE FROM Reaction WHERE Type=' ' OR Type IS NULL;
 
 /*This query joins 4 Tables to maximize the information, This also removes any rows that contain 'NULL' for User_ID*/
-SELECT Email,Reactions.User_ID,Content.Content_ID,Content.Category,Reactions.Type,Score,Sentiment,Content.Type,Datetime,URL
+SELECT Email,Reactions.User_ID,Content.Content_ID,Content.Category,Reactions.Type,Sentiment,Score,Content.Type,Datetime,URL
 FROM Reactions
 INNER JOIN ReactionTypes
 ON ReactionTypes.Type = Reactions.Type
