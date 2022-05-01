@@ -9,17 +9,21 @@ ON Location.User_ID = Session.User_ID
 INNER JOIN Users
 ON Session.User_ID = Users.User_ID
 
-/*Thes Queries were used in the Data Cleaning Phase*/
+--- These Queries were used in the Data Cleaning Phase ---
 SELECT *
 FROM Reactions
 WHERE Type is NULL
-
 DELETE FROM Reaction WHERE Type=' ' OR Type IS NULL;
 
-/*This query joins 3 Tables to maximize the information*/
-SELECT Reactions.User_ID,Content.Content_ID,Content.Category,Reactions.Type,Score,Sentiment,Content.Type,Datetime,URL
+/*This query joins 4 Tables to maximize the information, This also removes any rows that contain 'NULL' for User_ID*/
+SELECT Email,Reactions.User_ID,Content.Content_ID,Content.Category,Reactions.Type,Score,Sentiment,Content.Type,Datetime,URL
 FROM Reactions
 INNER JOIN ReactionTypes
 ON ReactionTypes.Type = Reactions.Type
 INNER JOIN Content
 ON Reactions.Content_ID= Content.Content_ID
+INNER JOIN Users
+ON Reactions.User_ID = Users.User_ID
+
+--- This point forward would show queries used for data Analysis ---
+
