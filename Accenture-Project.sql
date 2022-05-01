@@ -28,4 +28,9 @@ UPDATE Usage_Data
 SET Category = REPLACE(Category,'"','')
 
 --- This point forward would show queries used for data Analysis ---
+/**/
+SELECT DISTINCT(Category), COUNT(Score) AS Score
+FROM Usage_Data
+GROUP BY Category
+ORDER BY Score DESC
 
