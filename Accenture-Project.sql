@@ -1,5 +1,5 @@
 /*This Query Joins certain csv files to show the General info of the Users on Social Buzz*/
-SELECT Profile.User_ID,Name,Age, Email,Address,Interests, Device, Duration
+SELECT DISTINCT Profile.User_ID,Name,Age, Email,Address,Interests, Device, Duration
 INTO User_info
 FROM Profile
 INNER JOIN Location
@@ -16,7 +16,10 @@ WHERE Type is NULL
 
 DELETE FROM Reaction WHERE Type=' ' OR Type IS NULL;
 
-/*Adding a new column "Score" which would show the score of each reaction*/
-
-ALTER TABLE dbo.Reactions
-ADD Score INT NULL, Section VARCHAR(20) NULL ;
+/*This query joins 3 Tables to maximize the information*/
+SELECT Reactions.User_ID,Content.Content_ID,Content.Category,Reactions.Type,Score,Sentiment,Content.Type,Datetime,URL
+FROM Reactions
+INNER JOIN ReactionTypes
+ON ReactionTypes.Type = Reactions.Type
+INNER JOIN Content
+ON Reactions.Content_ID= Content.Content_ID
