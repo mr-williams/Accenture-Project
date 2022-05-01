@@ -23,5 +23,9 @@ ON ReactionTypes.Type = Reactions.Type
 INNER JOIN Content
 ON Reactions.Content_ID= Content.Content_ID
 
+/**/
+UPDATE Usage_Data
+SET Category = REPLACE(Category,'"','')
+
 --- This point forward would show queries used for data Analysis ---
 
