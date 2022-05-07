@@ -23,14 +23,28 @@ ON ReactionTypes.Type = Reactions.Type
 INNER JOIN Content
 ON Reactions.Content_ID= Content.Content_ID
 
-/**/
+/*This Query was ussed to remove quotations in various rows to allow dor mor e accurate results*/
 UPDATE Usage_Data
 SET Category = REPLACE(Category,'"','')
 
 --- This point forward would show queries used for data Analysis ---
-/**/
+/*This  query was used to count the scores in each category*/
 SELECT DISTINCT(Category), COUNT(Score) AS Score
 FROM Usage_Data
 GROUP BY Category
 ORDER BY Score DESC
+
+/*This Query shows how much engagement was done in each category*/
+SELECT DISTINCT(Category), Count(Score) AS Apperance
+FROM Usage_Data
+GROUP BY Category
+ORDER BY Apperance DESC
+
+/*This Query shows yhe monthly engagement from June 2020 - June 2021*/
+SELECT DATENAME(mm,Datetime) AS month_,DATENAME(YYYY,Datetime) AS Year_, COUNT(Datetime) AS Monthly_Engagement
+FROM Reactions
+GROUP BY DATENAME(YYYY,Datetime),DATENAME(mm,Datetime)
+ORDER BY max(Datetime)
+
+
 
