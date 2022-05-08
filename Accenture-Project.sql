@@ -40,9 +40,10 @@ FROM Usage_Data
 GROUP BY Category
 ORDER BY Apperance DESC
 
-/*This Query shows yhe monthly engagement from June 2020 - June 2021*/
+/*This Query shows yhe monthly engagement from June 2020 - May 2021*/
 SELECT DATENAME(mm,Datetime) AS month_,DATENAME(YYYY,Datetime) AS Year_, COUNT(Datetime) AS Monthly_Engagement
 FROM Reactions
+WHERE Datetime BETWEEN '2020-06-01' AND '2021-05-31'
 GROUP BY DATENAME(YYYY,Datetime),DATENAME(mm,Datetime)
 ORDER BY max(Datetime)
 
