@@ -23,13 +23,19 @@ ON ReactionTypes.Type = Reactions.Type
 INNER JOIN Content
 ON Reactions.Content_ID= Content.Content_ID
 
-/*This Query was ussed to remove quotations in various rows to allow dor mor e accurate results*/
+/*This Query was ussed to remove quotations in various rows to allow for more accurate results*/
 UPDATE Usage_Data
 SET Category = REPLACE(Category,'"','')
 
 --- This point forward would show queries used for data Analysis ---
 /*This  query was used to count the scores in each category*/
 SELECT DISTINCT(Category), COUNT(Score) AS Score
+FROM Usage_Data
+GROUP BY Category
+ORDER BY Score DESC
+
+/*This Query shows the combined agreegate score of each category accross the year*/
+SELECT DISTINCT(Category), SUM(Score) AS Score
 FROM Usage_Data
 GROUP BY Category
 ORDER BY Score DESC
